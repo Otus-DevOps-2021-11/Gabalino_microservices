@@ -1,0 +1,53 @@
+### docker pull mariadb
+
+Using default tag: latest
+latest: Pulling from library/mariadb
+Digest: sha256:ca31f38b6e325ece985d857db7eba1fe59928b4fd83ff8a55cb912c9684b9e43
+Status: Image is up to date for mariadb:latest
+docker.io/library/mariadb:latest
+
+### docker images
+
+REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
+mariadb      latest    45a5a43e143a   9 days ago   410MB
+
+### docker run -p 127.0.0.1:3306:3306  --name mariadb -e MARIADB_ROOT_PASSWORD=superpass -d mariadbdf86728e837f166ac264c89ffdf45aafe53ce53b4c826e871b8ca600f0806004
+
+861c12b2987001be4adcc8b3922f45ce3e0c5fe9b4f716d0fea7fcdc512c8fe5
+
+### docker ps
+
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                      NAMES
+861c12b29870   mariadb   "docker-entrypoint.s…"   51 seconds ago   Up 51 seconds   127.0.0.1:3306->3306/tcp   mariadb
+
+### docker run --name adminer --link mariadb:db -p 8080:8080 -d adminer
+
+587fdbd3dd6c44f9d04fd4194ba00e2fa7b909e76dd952fabe0e015247b4526f
+
+### http://127.0.0.1:8080/
+
+### docker exec -ti adminer sh
+
+### cat /etc/hosts
+
+127.0.0.1	localhost
+::1	localhost ip6-localhost ip6-loopback
+fe00::0	ip6-localnet
+ff00::0	ip6-mcastprefix
+ff02::1	ip6-allnodes
+ff02::2	ip6-allrouters
+172.17.0.2	db 861c12b29870 mariadb
+172.17.0.3	587fdbd3dd6c
+
+### docker stop adminer mariadb
+### docker rm adminer mariadb
+### docker rmi adminer:latest mariadb:latest
+
+Untagged: adminer:latest
+Untagged: adminer@sha256:c1258743fa99e7c1a48b0103e310ca37a80fe26e6499453c33716e4a162f5438
+Deleted: sha256:e7ff5f92e5090766b9aaf4df6c017b76b3dd7789e353c0fb8b3e65c70bdb8196
+...
+Untagged: mariadb:latest
+Untagged: mariadb@sha256:ca31f38b6e325ece985d857db7eba1fe59928b4fd83ff8a55cb912c9684b9e43
+Deleted: sha256:45a5a43e143af98426bbfe31e66dbc2e2283565405d7b9f22c23549a80da40a5
+...
