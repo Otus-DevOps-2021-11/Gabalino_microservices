@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update -qq && apt-get install -y \
   mongodb-server \
   ruby-full \
   ruby-dev \
@@ -15,7 +15,7 @@ COPY db_config /reddit/db_config
 COPY start.sh /start.sh
 
 RUN cd /reddit && \
-  rm Gemfile.lock && \
+#  rm Gemfile.lock && \
   bundle install && \
   chmod 0777 /start.sh
 
