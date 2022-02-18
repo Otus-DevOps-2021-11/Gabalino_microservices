@@ -8,6 +8,7 @@ docker ps -a --format "table {{.ID}}\t{{.Image}}\t{{.CreatedAt}}\t{{.Names}}"
 # Занятое дисковое пространство
 docker system df
 # Удалить все незапущенные контейнеры
+docker kill $(docker ps -q)
 docker rm $(docker ps -a -q)
 docker rmi $(docker images -q)
 #
