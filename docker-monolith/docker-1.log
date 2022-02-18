@@ -53,4 +53,6 @@ Deleted: sha256:45a5a43e143af98426bbfe31e66dbc2e2283565405d7b9f22c23549a80da40a5
 ...
 
 ### 
-/ubuntu-tmp-file
+REPOSITORY                 TAG       IMAGE ID       CREATED          SIZE
+yourname/ubuntu-tmp-file   latest    335cf2fb45b7   17 seconds ago   72.8MB
+

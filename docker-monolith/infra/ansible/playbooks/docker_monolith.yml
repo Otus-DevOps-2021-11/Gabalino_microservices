@@ -1,0 +1,17 @@
+---
+- name: Run container with monolith
+  hosts: all
+  become: true
+  gather_facts: yes
+
+  tasks:
+  - name: Create a monolith container
+    community.docker.docker_container:
+      name: monolith
+      image: gabalino/monolith
+      state: started
+      recreate: yes
+      exposed_ports:
+        - 9292
+      ports:
+        - "9292:9292"

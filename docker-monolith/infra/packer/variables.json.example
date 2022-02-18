@@ -1,0 +1,7 @@
+{
+    "yc_folder_id": "bla-bla-bla",
+    "yc_service_account_key_file": "key.json",
+    "yc_source_image_family": "ubuntu-2004-lts",
+    "yc_image_family": "docker",
+    "yc_platform_id": "standard-v3"
+}
