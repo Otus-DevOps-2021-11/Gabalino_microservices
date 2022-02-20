@@ -7,7 +7,7 @@ services:
     volumes:
       - post_db:/data/db
     networks:
-      - $REDDIT_NETWORK
+      - reddit
 
   ui:
     build: ./ui
@@ -15,24 +15,22 @@ services:
     ports:
       - 9292:${REDDIT_UI_PORT}/tcp
     networks:
-      - $REDDIT_NETWORK
+      - reddit
 
   post:
     build: ./post-py
     image: ${USERNAME}/post:${REDDIT_POST_TAG}
     networks:
-      - $REDDIT_NETWORK
+      - reddit
 
   comment:
     build: ./comment
     image: ${USERNAME}/comment:${REDDIT_COMMENT_TAG}
     networks:
-      - $REDDIT_NETWORK
+      - reddit
 
 volumes:
   post_db:
 
 networks:
   reddit:
-    name: ${REDDIT_NETWORK}
-
