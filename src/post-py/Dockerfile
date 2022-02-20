@@ -9,6 +9,7 @@ ADD . /app
 RUN apk --no-cache --update add build-base && \
     pip install --upgrade pip && \
     pip install -r /app/requirements.txt && \
-    apk del build-base
+    apk del build-base && \
+    rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["python3", "post_app.py"]

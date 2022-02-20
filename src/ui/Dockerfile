@@ -7,6 +7,7 @@ ENV COMMENT_SERVICE_PORT 9292
 ENV APP_HOME /app
 
 RUN apk --no-cache --update add build-base && \
+    rm -rf /var/cache/apk/* && \
     mkdir $APP_HOME
 
 WORKDIR $APP_HOME

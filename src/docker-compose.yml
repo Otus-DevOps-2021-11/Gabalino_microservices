@@ -1,0 +1,38 @@
+version: '3.3'
+
+services:
+
+  post_db:
+    image: mongo:${REDDIT_DB_TAG}
+    volumes:
+      - post_db:/data/db
+    networks:
+      - $REDDIT_NETWORK
+
+  ui:
+    build: ./ui
+    image: ${USERNAME}/ui:${REDDIT_UI_TAG}
+    ports:
+      - 9292:${REDDIT_UI_PORT}/tcp
+    networks:
+      - $REDDIT_NETWORK
+
+  post:
+    build: ./post-py
+    image: ${USERNAME}/post:${REDDIT_POST_TAG}
+    networks:
+      - $REDDIT_NETWORK
+
+  comment:
+    build: ./comment
+    image: ${USERNAME}/comment:${REDDIT_COMMENT_TAG}
+    networks:
+      - $REDDIT_NETWORK
+
+volumes:
+  post_db:
+
+networks:
+  reddit:
+    name: ${REDDIT_NETWORK}
+
