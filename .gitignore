@@ -11,3 +11,6 @@ variables.json
 # Ansible
 *.retry
 *.save
+
+# Docker
+.env
