@@ -25,6 +25,9 @@ __Git__
 git checkout -b gitlab-ci-1
 git remote add gitlab http://<your-vm-ip>/homework/example.git
 git push gitlab gitlab-ci-1
+# tag
+git tag 2.4.10
+git push gitlab gitlab-ci-1 --tags
 ```
 __GItlab__
 ```bash
