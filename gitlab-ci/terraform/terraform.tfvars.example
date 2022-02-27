@@ -1,0 +1,11 @@
+cloud_id                 = "id"
+folder_id                = "id"
+zone                     = "ru-central1-a"
+subnet_id                = "id"
+public_key_path          = "~/.ssh/appuser.pub"
+private_key_path         = "~/.ssh/appuser"
+service_account_key_file = "~/otus/key.json"
+instance_count           = 1
+platform_id              = "standard-v3"
+preemptible              = "true"
+inventory_tag            = "gitlab"

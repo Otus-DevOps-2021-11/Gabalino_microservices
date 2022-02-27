@@ -20,3 +20,24 @@ docker run --name reddit -d --network=host reddit:latest
 #
 docker logs reddit -f
 ```
+__Git__
+```bash
+git checkout -b gitlab-ci-1
+git remote add gitlab http://<your-vm-ip>/homework/example.git
+git push gitlab gitlab-ci-1
+# tag
+git tag 2.4.10
+git push gitlab gitlab-ci-1 --tags
+```
+__GItlab__
+```bash
+docker exec -it gitlab-runner gitlab-runner register \
+--url http://<your-ip>/ \
+--non-interactive \
+--locked=false \
+--name DockerRunner \
+--executor docker \
+--docker-image alpine:latest \
+--registration-token <your-token> \
+--tag-list "linu
+```
