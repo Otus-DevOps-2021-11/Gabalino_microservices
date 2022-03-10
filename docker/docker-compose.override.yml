@@ -1,0 +1,5 @@
+services:
+  ui:
+    command: puma --debug
+  comment:
+    command: puma --debug
