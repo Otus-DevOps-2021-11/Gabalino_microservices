@@ -39,6 +39,7 @@
       name: 
         - docker
         - docker-compose
+    tags: install
 
   - name: "Add user {{ ansible_user }} to group docker"
     user:
