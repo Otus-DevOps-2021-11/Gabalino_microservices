@@ -8,6 +8,8 @@ services:
       - post_db:/data/db
     networks:
       - reddit
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
 
   ui:
     #build: ./ui
@@ -16,18 +18,40 @@ services:
       - 9292:${REDDIT_UI_PORT}/tcp
     networks:
       - reddit
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.ui
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
 
   post:
     #build: ./post-py
     image: ${USERNAME}/post:${REDDIT_POST_TAG}
     networks:
       - reddit
+    environment:
+      - POST_DATABASE_HOST=post_db
+      - POST_DATABASE=posts
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+    depends_on:
+      - post_db
+    ports:
+      - "5000:5000"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.post
 
   comment:
     #build: ./comment
     image: ${USERNAME}/comment:${REDDIT_COMMENT_TAG}
     networks:
       - reddit
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
 
   prometheus:
     image: ${USERNAME}/prometheus
@@ -55,6 +79,7 @@ services:
       - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
     networks:
       - reddit
+
 volumes:
   post_db:
   prometheus_data:
